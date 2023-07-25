@@ -1,0 +1,45 @@
+
+h1 {
+    color: #cd5c5c;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+
+
+hr {
+    border-top: 2px solid black;
+    margin-bottom: 0;
+    margin-top: 2.5rem;
+}
+
+th,
+td {
+    color:black;
+    text-align: center;
+}
+
+button {
+    margin: 1rem;
+}
+
+p {
+    color: black;
+    margin: 0;
+}
+
+li.dropdown-item {
+    width: fit-content;
+    height: fit-content;
+}
+
+.card {
+    border: 0px;
+}
+
+/* Estilos personalizados para la imagen del enlace específico */
+.custom-img {
+    width: 100%; /* Establecer el ancho al 100% */
+    height: auto; /* Altura ajustada automáticamente para mantener la proporción */
+  }
+  
