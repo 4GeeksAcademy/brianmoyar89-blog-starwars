@@ -3,14 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 import { Context } from '../store/appContext';
 import PropTypes from 'prop-types';
 
-const Card = ({ name, uid, category }) => {
+const Card = (props) => {
     const { store, actions } = useContext(Context);
     const { idCard } = useParams();
-    const imageToDisplay = uid === "1" && category === "planets" ? `https://i1.wp.com/www.sinembargo.mx/wp-content/uploads/2014/07/tatooine.jpg?w=570&quality=80&strip=all&ssl=1` : `https://starwars-visualguide.com/assets/img/${(category === "people" ? "characters" : category)}/${uid}.jpg`;
+    const imageToDisplay = props?.uid === "1" && props?.category === "planets" ? `https://i1.wp.com/www.sinembargo.mx/wp-content/uploads/2014/07/tatooine.jpg?w=570&quality=80&strip=all&ssl=1` : `https://starwars-visualguide.com/assets/img/${(props?.category === "people" ? "characters" : props?.category)}/${props?.uid}.jpg`;
 
-    // Define el tamaño fijo para todas las imágenes (en pixeles)
-    const imageWidth = 200;
-    const imageHeight = 300;
 
     // Estado para controlar si el corazón está seleccionado o no
     const [isFavorite, setIsFavorite] = useState(false);
@@ -21,25 +18,26 @@ const Card = ({ name, uid, category }) => {
 
         // Agrega o elimina el nombre del personaje a la lista de favoritos
         if (!isFavorite) {
-            actions.addFavorites(name);
+            actions.addFavorites(props?.name);
         } else {
-            actions.deleteFavorites(name);
+            actions.deleteFavorites(props?.name);
         }
     };
 
     return (
         <div className="card mb-5 mx-2" style={{ width: "18rem" }}>
-            <img src={imageToDisplay} className="card-img-top" alt="A Picture From Far Far Away" style={{ width: `${imageWidth}px`, height: `${imageHeight}px` }} />
+            <img src={imageToDisplay} className="card-img-top w-100" alt="A Picture From Far Far Away" style={{ height: "396px" }} />
             <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                {(category === "people") ?
-                    (<><p className="card-text">A person within the Star Wars universe</p></>) :
-                    ((category === "planets") ?
-                        (<><p className="card-text">A planet within the Star Wars universe</p></>) :
-                        (<><p className="card-text">A vehicle within the Star Wars universe</p></>)
+                <h5 className="card-title">{props?.name}</h5>
+                {(props?.category === "people") ?
+                    (<><p className="card-text">Gender: {props?.gender}</p><p className="card-text">Hair Color: {props?.hairColor}</p><p className="card-text">Eye Color: {props?.eyeColor}</p></>) :
+                ((props?.category === "planets") ?
+                    (<><p className="card-text">Population: {props?.population}</p><p className="card-text">Terrain: {props?.terrain}</p><p className="card-text">Climate: {props?.climate}</p></>) :
+                
+                    (<><p className="card-text">Vehicle Class: {props?.vehicleClass}</p><p className="card-text">Cargo Capacity: {props?.cargoCapacity}</p><p className="card-text">Max Atmosphering Speed: {props?.maxAtmospheringSpeed}</p></>)
                     )
                 }
-                <Link to={`/${category}/${uid}`}><button className='btn btn-outline-primary'>Learn More!</button></Link>
+                <Link to={`/${props?.category}/${props?.uid}`}><button className='btn btn-outline-primary'>Learn More!</button></Link>
                 <button className={`btn ${isFavorite ? "btn-danger" : "btn-outline-warning"}`} onClick={handleFavoriteClick}>
                     <i className={`far ${isFavorite ? "fa-heart" : "fa-heart"}`}></i>
                 </button>

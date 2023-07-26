@@ -50,8 +50,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//fetch StarWar's General Information and store it globally
 			getStarWarsInfo: (category) => {
-				fetch(`https://www.swapi.tech/api/${category}/`).then(response => response.json())
+				fetch(`https://swapi.dev/api/${category}/`).then(response => response.json())
 					.then(data => {
+						console.log(data)
 						let obj = {};
 						obj[category] = data.results;
 						setStore(obj);
@@ -60,17 +61,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			//fetch StarWar Characters and store it globally
 			getPeople: (id) => {
-				fetch(`https://www.swapi.tech/api/people/${id}`).then(response => response.json())
-				.then((data) => {setStore({ peopleInfo: data?.result.properties })})
+				fetch(`https://swapi.dev/api/people/${id}`).then(response => response.json())
+				.then((data) => {setStore({ peopleInfo: data})})
 				.catch(err => err)
 			},
 			//fetch StarWar Vehicles and store it globally
 			getVehicles: (id) => {
-				fetch(`https://www.swapi.tech/api/vehicles/${id}`).then(response => response.json()).then(data => setStore({ vehiclesInfo: data?.result.properties })).catch(err => err)
+				fetch(`https://swapi.dev/api/vehicles/${id}`).then(response => response.json()).then(data => setStore({ vehiclesInfo: data})).catch(err => err)
 			},
 			//fetch StarWar Planets and store it globally
 			getPlanets: (id) => {
-				fetch(`https://www.swapi.tech/api/planets/${id}`).then(response => response.json()).then(data => setStore({ planetsInfo: data?.result.properties })).catch(err => err)
+				fetch(`https://swapi.dev/api/planets/${id}`).then(response => response.json()).then(data => setStore({ planetsInfo: data})).catch(err => err)
 			},
 			//add selectedItem to favorites' list
 			addFavorites: (selectedItem) => {

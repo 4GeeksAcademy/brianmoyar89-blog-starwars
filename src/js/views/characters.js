@@ -15,7 +15,9 @@ const Characters = () => {
       <div className="container mt-5 d-flex">
         <img src={`https://starwars-visualguide.com/assets/img/characters/${idCard}.jpg`} className="rounded mx-2" style={{ width: "18rem" }} alt="Cool looking character"></img>
         <div className="mx-2 text-center">
-          <h1 className="text-dark mt-0">{store.peopleInfo ? store.peopleInfo.name : "loading..."}</h1>
+          <h1 className="text-dark mt-0">{store.peopleInfo ?
+           store.peopleInfo.name
+            : "loading..."}</h1>
           <p className="character-description text-dark">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
         </div>
       </div>
